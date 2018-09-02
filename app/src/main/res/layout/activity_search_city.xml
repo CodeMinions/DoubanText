@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/search"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            />
+        <EditText
+            android:id="@+id/search_cityName"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="20dp"
+            android:maxLines="1"
+            android:background="@null"
+            android:hint="请输入城市"
+            android:textSize="30sp" />
+        <Button
+            android:id="@+id/makesure_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+    </LinearLayout>
+
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/city_container_XrecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+</LinearLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+   >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+        <View
+            android:background="#e8f3ef"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="3dp"/>
+        <View
+            android:background="#808080"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="3dp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/progress_3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <ProgressBar
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/time_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="时间" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="#C4C4C4"/>
+
+        <Button
+            android:id="@+id/like_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="热度"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+
+    </LinearLayout>
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/soonfragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+
+</LinearLayout>

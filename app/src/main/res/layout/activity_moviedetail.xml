@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/movie_back"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--标题栏-->
+    <RelativeLayout
+        android:id="@+id/title_back"
+        android:background="#607f77"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/back_movie"
+            android:background="@drawable/back"
+            android:layout_margin="8dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+        <FrameLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/hua"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:text="       电影"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+        <Button
+            android:layout_alignParentEnd="true"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/share"
+            android:layout_margin="8dp"
+            android:layout_width="23dp"
+            android:layout_height="23dp" />
+
+
+    </RelativeLayout>
+    <!--主要内容-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--电影海报-->
+            <LinearLayout
+                android:id="@+id/posters_back"
+                android:layout_width="match_parent"
+                android:layout_height="243dp"
+                android:background="#607f77"
+                android:orientation="vertical">
+                <!--android:src="@drawable/posters"-->
+                <ImageView
+                    android:id="@+id/posters"
+                    android:layout_width="146dp"
+                    android:layout_height="207dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:background="#ffffff"
+                     />
+            </LinearLayout>
+
+
+            <!--简要信息-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="178dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
+
+                    <TextView
+                        android:id="@+id/movie_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="17dp"
+                        android:text="电影名称"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/info1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/movie_name"
+                        android:layout_marginLeft="17dp"
+                        android:text="上映年份/类型"
+                        android:textSize="9dp" />
+
+                    <TextView
+                        android:id="@+id/info2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/info1"
+                        android:layout_marginLeft="17dp"
+                        android:text="上映时间："
+                        android:textSize="9dp" />
+
+                    <TextView
+                        android:id="@+id/info3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/info2"
+                        android:layout_marginLeft="17dp"
+                        android:text="片长："
+                        android:textSize="9dp" />
+
+                    <!--elevation设置阴影，可能因为View颜色过浅设置失败，无效-->
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:elevation="10dp"
+                        android:layout_width="85dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:padding="7dp"
+                        android:layout_marginEnd="19dp"
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/ratingview">
+
+                        <TextView
+                            android:text="豆瓣评分"
+                            android:textSize="8dp"
+                            android:layout_gravity="center"
+                            android:textColor="#808080"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/rating"
+                            android:text="10.0"
+                            android:textSize="18sp"
+                            android:layout_gravity="center"
+                            android:textColor="#000000"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                        <!--原生星星无法显示，尺寸过大-->
+                        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                            style="@style/MyRatingBar"
+                            android:id="@+id/rating_star"
+                            android:numStars="5"
+                            android:rating="4.5"
+                            android:isIndicator="true"
+                            android:stepSize="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            app:mrb_progressTint="#FFA92E"/>
+
+                        <TextView
+                            android:id="@+id/rating_count"
+                            android:text="0人"
+                            android:textSize="9dp"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginBottom="26dp"
+                    android:layout_marginTop="26dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal">
+
+                        <Button
+                            android:layout_width="90dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="15dp"
+                            android:background="@drawable/button_border"
+                            android:text="想看"
+                            android:textColor="#ffac27" />
+
+                        <Button
+                            android:layout_width="178dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            android:background="@drawable/button_border"
+                            android:text="看过                "
+                            android:textColor="#ffac27" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <!--选座入口-->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@drawable/choose_seat">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:drawablePadding="11dp"
+                    android:drawableStart="@drawable/ticket"
+                    android:text="选座购票"
+                    android:textSize="13dp" />
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:src="@drawable/more" />
+
+            </FrameLayout>
+
+            <!--主要简介-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:id="@+id/summary_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginTop="30dp"
+                    android:text="简介"
+                    android:textSize="15sp" />
+
+                <!--这里还应有一个按钮，展开页面-->
+                <TextView
+                    android:id="@+id/summary"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:layout_below="@id/summary_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="13dp" />
+
+                <Button
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="50dp"
+                    android:layout_height="17dp"
+                    android:layout_below="@id/summary"
+                    android:layout_alignParentEnd="true"
+                    android:padding="0dp"
+                    android:text="举报简历"
+                    android:textSize="8sp"
+                    android:textColor="#808080"/>
+
+            </RelativeLayout>
+
+            <!--影人-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginBottom="13dp"
+                    android:text="影人" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/actor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="10dp">
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <!--预告片/剧照-->
+            <!--没有API暂无法实现-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="198dp"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="11dp"-->
+                    <!--android:layout_marginTop="28dp"-->
+                    <!--android:layout_marginBottom="9dp"-->
+                    <!--android:text="预告片/剧照" />-->
+
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginStart="11dp">-->
+
+                <!--</android.support.v7.widget.RecyclerView>-->
+            <!--</LinearLayout>-->
+
+            <!--评论，讨论 fragment-->
+            <LinearLayout
+                android:background="#e8f3ef"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <!--有个问题，为什么上边这个height为100dp时整个列表无法加载-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp">
+                    <Button
+                        android:text="评论"
+                        android:textColor="#000000"
+                        android:id="@+id/button_comment"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+                    <Button
+                        android:text="讨论区"
+                        android:textColor="#000000"
+                        android:id="@+id/button_discuss"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                    <FrameLayout
+                        android:id="@+id/comments"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--影评-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="17dp"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center"
+                        android:text="影评" />
+
+                    <Button
+                        android:layout_width="43dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="end|center"
+                        android:background="@drawable/comment_button"
+                        android:text="写影评"
+                        android:textColor="#44bb53"
+                        android:textSize="9dp" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:text="找不到API, 无法获取数据..."
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="作者名称"
+                        android:textColor="#989899"
+                        android:layout_margin="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:textColor="#989899"
+                        android:text="黄渤的《一出好戏》的故事内容，很容易让人联想起诺贝尔文学奖获得者威廉·戈尔丁的名作《蝇王》，但本片跟后者其实是相反的，包括角色设定、故事的发展脉络，人性的主题等等，用一句时髦形容词，《一出好戏》是“反向蝇王”。但这部电影最终所要表达的内核，好像跟后者是一样一样一样滴。"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="2780 / 3001 有用"
+                        android:textColor="#989899"
+                        android:layout_margin="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <Button
+                    android:layout_gravity="center"
+                    android:text="全部影评7552个"
+                    android:textColor="#44bb53"
+                    style="?android:borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <!--其他-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="喜欢这部电影的人也喜欢"
+                    android:gravity="bottom"
+                    android:layout_marginStart="14dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/likemovie_list"
+                    android:layout_margin="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

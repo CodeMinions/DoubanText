@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="40dp"
+       android:orientation="horizontal">
+       <Button
+           android:id="@+id/choice_city_button"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           android:text="天津"
+           android:layout_marginStart="5dp"
+           android:textSize="16sp"
+           android:drawableEnd="@mipmap/more_unfold"
+           style="?android:attr/borderlessButtonStyle" />
+
+       <!--<Button-->
+           <!--android:id="@+id/search_movie_button"-->
+           <!--android:layout_width="0dp"-->
+           <!--android:layout_weight="4"-->
+           <!--android:layout_height="match_parent"-->
+           <!--android:text="电影/电视剧/影人"-->
+           <!--android:textColor="#808080"-->
+           <!--android:drawableStart="@mipmap/search"-->
+           <!--style="@style/Widget.AppCompat.Button.Borderless"/>-->
+
+       <com.example.xiaoh.doubanmovie.utils.DrawableCenterLeftEditView
+           android:id="@+id/search_movie_button"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:layout_height="30dp"
+           android:layout_gravity="center"
+           android:layout_marginRight="10dp"
+           android:layout_marginVertical="10dp"
+           android:background="@drawable/btn_gray_shape"
+           android:drawableLeft="@mipmap/ic_search"
+           android:drawablePadding="10dp"
+           android:gravity="center_vertical"
+           android:minHeight="30dp"
+           android:text="电影 / 电视剧/ 影人"
+           android:textColorHint="#333333"
+           android:textSize="14sp" />
+
+   </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c4c4c4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <Button
+            android:id="@+id/now_popular_show_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="正在热映"/>
+        <Button
+            android:id="@+id/soon_show_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="即将上映"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c4c4c4"
+        />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/now_popular_show_fragment"
+            android:name="com.example.xiaoh.doubanmovie.Now_popular_fragemnt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+        <fragment
+            android:id="@+id/soon_show_fragment"
+            android:name="com.example.xiaoh.doubanmovie.SoonShowFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingBottom="15dp"
+              android:paddingTop="15dp"
+              android:paddingLeft="15dp"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:textColor="#996108"
+        android:background="@drawable/number_backgroud_shape"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        tools:text="NO.100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+       >
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_content"
+            android:layout_width="80dp"
+            android:layout_height="110dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            app:cardElevation="10dp">
+
+            <ImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                />
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@mipmap/play"
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="升级"/>
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:textSize="16sp"
+                    tools:text="(2005)"
+                    android:id="@+id/tv_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                    android:id="@+id/rb_star"
+                    style="@style/MyRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="3"
+                    app:mrb_progressTint="#FFA92E"/>
+
+                <TextView
+                    android:id="@+id/tv_star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGray_light"
+                    android:textSize="12sp"
+                    tools:text="8.0"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorGray_light"
+                android:textSize="14sp"
+                tools:text="2018/喜剧/动作"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_detail"
+        android:layout_marginTop="3dp"
+        android:layout_marginStart="100dp"
+        android:padding="8dp"
+        android:background="@drawable/btn_gray_shape"
+        tools:text="即将"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

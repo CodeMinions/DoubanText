@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp">
+
+    <com.example.xiaoh.doubanmovie.MyImageView
+        android:id="@+id/picture_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:paddingTop="12dp"
+        android:src="@drawable/ic_launcher_background"/>
+
+    <TextView
+        android:id="@+id/movie_title_Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="西红柿首富"
+        android:textSize="17sp"
+        android:textColor="#000000"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@+id/picture_image"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"/>
+
+
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/picture_image"
+        android:layout_below="@+id/movie_title_Text"
+        android:textSize="12sp"
+        android:textColor="#808080"
+        android:layout_marginLeft="10dp"
+        android:text="标签"  />
+
+    <TextView
+        android:id="@+id/area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/picture_image"
+        android:layout_below="@+id/label"
+        android:layout_marginLeft="10dp"
+        android:textSize="12sp"
+        android:textColor="#808080"
+        android:text="地区 "
+        />
+
+    <TextView
+        android:id="@+id/how_many_people_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:text="17.5万人想看"
+        android:textColor="#FFA92E"
+        />
+
+
+</RelativeLayout>
