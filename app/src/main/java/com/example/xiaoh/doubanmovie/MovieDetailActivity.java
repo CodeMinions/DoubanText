@@ -211,6 +211,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     public Handler handler = new Handler() {
@@ -241,6 +242,7 @@ public class MovieDetailActivity extends AppCompatActivity {
      */
     public void initActorList(){
         recyclerView = findViewById(R.id.actor);
+        recyclerView.setNestedScrollingEnabled(false);
         manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(manager);

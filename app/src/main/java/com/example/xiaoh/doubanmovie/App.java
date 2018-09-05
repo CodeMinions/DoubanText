@@ -1,6 +1,7 @@
 package com.example.xiaoh.doubanmovie;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Handler;
 
 /**
@@ -9,12 +10,15 @@ import android.os.Handler;
 
 public class App extends Application {
 
+    private static Context context;
+
     // 获取到主线程的handler
     private static Handler mMainThreadHandler;
     private static App instance;
     @Override
     public void onCreate() {
         super.onCreate();
+        context = getApplicationContext();
         App.instance = this;
         App.mMainThreadHandler = new Handler();
     }
@@ -28,4 +32,7 @@ public class App extends Application {
         return mMainThreadHandler;
     }
 
+    public static Context getContext(){
+        return context;
+    }
 }

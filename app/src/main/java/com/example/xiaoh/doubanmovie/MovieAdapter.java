@@ -3,10 +3,12 @@ package com.example.xiaoh.doubanmovie;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -131,12 +133,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         }
 
         final ViewHolder holder = new ViewHolder(view);
-
-
-
         return holder;
     }
 
+
+    // FIXME: 2018/9/4 可能是计算问题，新加的历史纪录未设置点击事件时点击会进入热搜列表的电影
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position){
         if(position != 0){
@@ -150,6 +151,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     public void onClick(View v){
                         String id = id_list.get(position - 1);
                         Toast.makeText(v.getContext(), id, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), "wulishi", Toast.LENGTH_SHORT).show();
                         MovieDetailActivity.actionStart(v.getContext(), id);
                     }
                 });
@@ -160,20 +162,35 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     String history_Movie = history_List.get(position-1);
                     holder.movieNum.setText("");
                     holder.movieName.setText(history_Movie);
+
+
+                    // FIXME: 2018/9/5 未实现：点击将历史item名发至输入框
+                    holder.movieView.setOnClickListener(new View.OnClickListener(){
+                        public void onClick(View v){
+//                            View view = LayoutInflater.from(App.getContext()).inflate(R.layout.activity_search, null ,false);
+//                            EditText e = (EditText) view.findViewById(R.id.search_edit);
+
+//                            e.setText(history_List.get(position-1));
+
+                            Toast.makeText(v.getContext(), "点击历史", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
                 else if(position != (allCaseNum()+1)) {
                     final Movie movie = movie_List.get(position-allCaseNum()-2);
                     holder.movieNum.setText(Integer.toString(position - allCaseNum() - 1));
                     holder.movieName.setText(movie.getTitle());
-
-                    holder.movieView.setOnClickListener(new View.OnClickListener(){
-                        @Override
-                        public void onClick(View v){
-                            String id = id_list.get(position - allCaseNum() - 2);
-                            Toast.makeText(v.getContext(), id, Toast.LENGTH_SHORT).show();
-                            MovieDetailActivity.actionStart(v.getContext(), id);
-                        }
-                    });
+                    if(position >= (allCaseNum() + 2)){
+                        holder.movieView.setOnClickListener(new View.OnClickListener(){
+                            @Override
+                            public void onClick(View v){
+                                String id = id_list.get(position - allCaseNum() - 2);
+                                Toast.makeText(v.getContext(), id, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(v.getContext(), "youlishi", Toast.LENGTH_SHORT).show();
+                                MovieDetailActivity.actionStart(v.getContext(), id);
+                            }
+                        });
+                    }
                 }
             }
         }

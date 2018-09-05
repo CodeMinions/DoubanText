@@ -29,6 +29,7 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.List;
 
 import okhttp3.Call;
@@ -47,15 +48,18 @@ public class SearchActivity extends AppCompatActivity {
     public RecyclerView recyclerView ;
     public LinearLayoutManager manager;
 
+    public RecyclerView resultList;
+    public LinearLayoutManager result_manage;
+    public SearchResultAdapter result_adapter;
+
     public static MovieAdapter adapter;
 
     public List<String> id_list = new ArrayList<String>();
+    public List<Movie> result_list = new ArrayList<Movie>();
 
     private Button cancel_button;
 
     EditText editText;
-
-    public TextView test_view;
 
     /**
      * 需要在MovieAdapter中调用数据库
@@ -66,6 +70,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private RelativeLayout progress;
 
+    TextView testText;
 
     public static void actionStart(Context context){
         Intent intent = new Intent(context, MovieDetailActivity.class);
@@ -79,6 +84,8 @@ public class SearchActivity extends AppCompatActivity {
 
         progress = findViewById(R.id.progress);
         progress.setVisibility(View.VISIBLE);
+
+        testText = findViewById(R.id.test_text);
 
 /**
  * 设置取消按钮
@@ -126,6 +133,25 @@ public class SearchActivity extends AppCompatActivity {
                         editText.setText("");
                         adapter.notifyDataSetChanged();
 
+                        HttpUtil.sendHttpRequest("https://api.douban.com/v2/movie/search?q=" + historyData, new okhttp3.Callback(){
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                String getData = response.body().string();
+                                parseJSON(getData);
+
+                                if(response.isSuccessful()){
+                                    Message message = new Message();
+                                    message.what = EDIT_SOME;
+                                    handler.sendMessage(message);
+                                }
+                            }
+                            @Override
+                            public void onFailure(Call call, IOException e){
+                                Toast.makeText(SearchActivity.this, "Error", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+
                         Toast.makeText(SearchActivity.this, "history + 1", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -136,22 +162,40 @@ public class SearchActivity extends AppCompatActivity {
         /**
          * 定义实时监听
          */
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+//        editText.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                String edit = editable.toString();
+//                testText.setText(edit);
+//                HttpUtil.sendHttpRequest("https://api.douban.com/v2/movie/search?q=" + edit, new okhttp3.Callback(){
+//                    @Override
+//                    public void onResponse(Call call, Response response) throws IOException {
+//                        String getData = response.body().string();
+//                        parseJSON(getData);
+//
+//                        if(response.isSuccessful()){
+//                            Message message = new Message();
+//                            message.what = EDIT_SOME;
+//                            handler.sendMessage(message);
+//                        }
+//                    }
+//                    @Override
+//                    public void onFailure(Call call, IOException e){
+//                        Toast.makeText(SearchActivity.this, "Error", Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//            }
+//        });
 
 /**
  * 隐藏原生标题栏
@@ -163,6 +207,12 @@ public class SearchActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.movie_list);
         manager = new LinearLayoutManager(this);
+
+/**
+ * 初始化搜索结果的列表
+ */
+        resultList = (RecyclerView) findViewById(R.id.search_result_list);
+        result_manage = new LinearLayoutManager(this);
 
 /**
  *
@@ -195,13 +245,23 @@ public class SearchActivity extends AppCompatActivity {
             switch(msg.what){
                 case resposeSuccessful:
                     initData();
-
                     break;
-                default:
+                case EDIT_SOME:
+                    setVisibili();
                     break;
+                    default:
             }
         }
     };
+    private void setVisibili(){
+        resultList.setLayoutManager(result_manage);
+        result_adapter = new SearchResultAdapter(result_list);
+        resultList.setAdapter(result_adapter);
+
+        findViewById(R.id.search_result).setVisibility(View.VISIBLE);
+        Toast.makeText(SearchActivity.this, "显示！！",Toast.LENGTH_SHORT).show();
+    }
+
 
     private void initData(){
         historySave = new HistorySaveHelper(SearchActivity.this, "history.db", null, 1 );
@@ -224,9 +284,19 @@ public class SearchActivity extends AppCompatActivity {
         JavaBean.Status l = gson.fromJson(jsonData, JavaBean.Status.class);
         List<Movie> movie_List = l.getSubjects();
 
-        for(int i = 0; i < 10   ; i++){
+        for(int i = 0; i < 10; i++){
             id_list.add(movie_List.get(i).getId());
             list.add(movie_List.get(i));
+        }
+    }
+    public void parseJSON(String jsonData){
+        Gson gson = new Gson();
+
+        JavaBean.Status l = gson.fromJson(jsonData, JavaBean.Status.class);
+        List<Movie> movie_List = l.getSubjects();
+
+        for(Movie m : movie_List){
+            result_list.add(m);
         }
     }
 
